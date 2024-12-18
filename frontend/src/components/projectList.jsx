@@ -13,7 +13,7 @@ const ProjectList = ({acceptedProjects, setAcceptedProjects}) => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await axios.get('https://ionotsassignment.onrender.com/api/projects');
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/projects`);
         setProjects(res.data.response);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -33,7 +33,7 @@ const ProjectList = ({acceptedProjects, setAcceptedProjects}) => {
   const handleAcceptProject = async () => {
     if (selectedProject) {
       try {
-        const response = await axios.post(`https://ionotsassignment.onrender.com/api/acceptproject?id=${selectedProject._id}`);
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/acceptproject?id=${selectedProject._id}`);
         if(response.status===200){
           setAcceptedProjects(response.data.response);
         }

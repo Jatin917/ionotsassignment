@@ -12,7 +12,7 @@ function App() {
     const fetchAcceptedProjects = async()=>{
       try {
         setIsLoading(true);
-        const res = await axios.get("https://ionotsassignment.onrender.com/api/acceptproject");
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/acceptproject`);
         setAcceptedProjects(res.data.response);
         setIsLoading(false);
       } catch (error) {
@@ -28,6 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProjectList acceptedProjects={acceptedProjects} setAcceptedProjects={setAcceptedProjects} />} />
         {/* {/* <Route path="/projects" element={<Projects />} /> */}
+        <Route path="/project" element={<Projects />} /> 
         <Route path="/active-projects" element={<ActiveProject isLoading={isLoading} projects={acceptedProjects} />} /> 
         <Route path="*" element={<p>No Page found</p>} />
       </Routes>

@@ -12,7 +12,7 @@ export const getAllAcceptedProjects = async(req, res) =>{
             .populate({
                 path:'tasks.task',
                 model:"Task",
-                select:"taskname description isCompleted"
+                select:"taskName description isCompleted points"
             });
         return res.status(200).json({message:"successfully fetched all projects", response});
     } catch (error) {

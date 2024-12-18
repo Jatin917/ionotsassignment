@@ -14,18 +14,18 @@ const ActiveProjects = ({ projects, isLoading }) => {
   };
 
   const calculateProgress = (project) => {
-    switch (project.status) {
-      case "Pending":
-        return 10;
-      case "In Progress":
-        return 50;
-      case "Completed":
-        return 100;
-      default:
-        return 0;
-    }
+    const tasks = project.tasks;
+    let Totalpoints = 0;
+    let completedPoints = 0;
+    tasks.forEach(task => {
+        Totalpoints += task.task.points
+        if(task.task.isComplete){
+            completedPoints += task.task.points;
+        }
+    });
+    const progress = (completedPoints/Totalpoints)*100;
+    return progress;
   };
-
   if (isLoading) {
     return (
       <div className="container mx-auto p-4">
@@ -93,7 +93,7 @@ const ActiveProjects = ({ projects, isLoading }) => {
                     Details
                   </h3>
                   <p className="text-sm text-gray-600">
-                    {project.description || "No description available"}
+                    {project.project.description || "No description available"}
                   </p>
                 </div>
 
@@ -105,7 +105,7 @@ const ActiveProjects = ({ projects, isLoading }) => {
                   {project.tasks && project.tasks.length > 0 ? (
                     <ul className="list-disc list-inside text-sm text-gray-600">
                       {project.tasks.map((task, index) => (
-                        <li key={index}>{task.taskName}</li>
+                        <li key={index}>{task.task.taskName}</li>
                       ))}
                     </ul>
                   ) : (
