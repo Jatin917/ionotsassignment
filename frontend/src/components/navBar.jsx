@@ -19,7 +19,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo/Company Name */}
         <div className="flex items-center">
-          <a to="/" className="text-2xl font-bold text-gray-800">
+          <a href="/" className="text-2xl font-bold text-gray-800">
             Projects
           </a>
         </div>
@@ -29,7 +29,7 @@ const Navbar = () => {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <a to="/my-projects">
+                <a href="/my-projects">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     My Projects
                   </NavigationMenuLink>
