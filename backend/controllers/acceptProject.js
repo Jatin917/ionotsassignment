@@ -5,7 +5,7 @@ import projectSchema from "../model/projectSchema.js";
 export const acceptProject = async (req, res) =>{
     try {
         const {id:projectId} = req.query;
-        const project = await projectSchema.findById(projectId).populate("tasks");
+        const project = await projectSchema.findById(projectId).populate("project").populate("tasks");
         if(!project){
             return res.status(401).json({message:"error finding that project"});
         }

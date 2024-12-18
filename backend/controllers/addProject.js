@@ -3,12 +3,18 @@ import projectSchema from "../model/projectSchema.js";
 
 export const addProject = async(req, res) =>{
     try {
-        const {title, description } = req.body;
-        const response = await projectSchema.create({title, description});
-        if (!title || !description) {
-            return res.status(400).json({ message: "All fields are required" , response});
+        const projects = req.body;
+        // const response = await projectSchema.create({title, description});
+        for (let project of projects) {
+            if (!project.title || !project.description) {
+                return res.status(400).json({ message: "Each project must have a title and description" });
+            }
         }
-        res.status(200).json({message:"Project added successfully", response});
+
+        const responses = await Promise.all(
+            projects.map(project => projectSchema.create(project ))
+        );
+        res.status(200).json({message:"Project added successfully", responses});
         
     } catch (error) {
         res.status(500).json({message:error.message});
