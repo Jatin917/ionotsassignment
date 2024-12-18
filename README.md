@@ -82,4 +82,5 @@ The assignment implements a project management system with the following key fun
    npm start
    ```
 6. Open the application in your browser at `http://localhost:3000`.
+7. Deployed Link-> https://ionotsassignment.netlify.app/
 
