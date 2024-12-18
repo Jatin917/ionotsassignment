@@ -6,27 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const ActiveProjects = ({ projects, isLoading }) => {
-  const [projectDetails, setProjectDetails] = useState([]);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      if (!projects || projects.length === 0) return;
-      try {
-        const responses = await Promise.all(
-          projects.map((p) =>
-            axios.get(`http://localhost:5000/api/projects/${p.project}`)
-          )
-        );
-        const detailedProjects = responses.map((res) => res.data);
-        console.log(detailedProjects, "responses", responses.data);
-        setProjectDetails(detailedProjects);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchProjects();
-  }, [projects]);
-
+    console.log(projects);
   const getProgressColor = (progress) => {
     if (progress < 30) return "bg-red-500";
     if (progress < 60) return "bg-yellow-500";
@@ -58,7 +38,7 @@ const ActiveProjects = ({ projects, isLoading }) => {
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">Active Projects</h1>
 
-      {projectDetails.length === 0 ? (
+      {projects.length === 0 ? (
         <div className="text-center text-gray-500 bg-gray-100 p-8 rounded-lg">
           <p className="text-xl">No active projects at the moment</p>
           <p className="text-sm text-gray-400 mt-2">
@@ -67,7 +47,7 @@ const ActiveProjects = ({ projects, isLoading }) => {
         </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projectDetails.map((project) => (
+          {projects.map((project) => (
             <Card
               key={project._id}
               className="w-full border border-gray-200 shadow-sm rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300"

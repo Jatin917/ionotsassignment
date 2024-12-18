@@ -12,7 +12,7 @@ function App() {
     const fetchAcceptedProjects = async()=>{
       try {
         setIsLoading(true);
-        const res = await axios.get("http://localhost:5000/api/acceptproject");
+        const res = await axios.get("https://ionotsassignment.onrender.com/api/acceptproject");
         setAcceptedProjects(res.data.response);
         setIsLoading(false);
       } catch (error) {
