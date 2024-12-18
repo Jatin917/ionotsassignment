@@ -28,7 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProjectList acceptedProjects={acceptedProjects} setAcceptedProjects={setAcceptedProjects} />} />
         {/* {/* <Route path="/projects" element={<Projects />} /> */}
-        <Route path="/project" element={<Projects />} /> 
+        {/* <Route path="/project" element={<Projects />} />  */}
         <Route path="/active-projects" element={<ActiveProject isLoading={isLoading} projects={acceptedProjects} />} /> 
         <Route path="*" element={<p>No Page found</p>} />
       </Routes>
